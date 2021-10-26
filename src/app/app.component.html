@@ -1,501 +1,527 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<style>
-  :host {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    color: #333;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
-  .toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-  }
-
-  .toolbar img {
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo {
-    height: 40px;
-    margin: 0 8px;
-  }
-
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
-  .toolbar #twitter-logo:hover,
-  .toolbar #youtube-logo:hover {
-    opacity: 0.8;
-  }
-
-  .content {
-    display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    max-width: 960px;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  svg.material-icons {
-    height: 24px;
-    width: auto;
-  }
-
-  svg.material-icons:not(:last-child) {
-    margin-right: 8px;
-  }
-
-  .card svg.material-icons path {
-    fill: #888;
-  }
-
-  .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .card {
-    all: unset;
-    border-radius: 4px;
-    border: 1px solid #eee;
-    background-color: #fafafa;
-    height: 40px;
-    width: 200px;
-    margin: 0 8px 16px;
-    padding: 16px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s ease-in-out;
-    line-height: 24px;
-  }
-
-  .card-container .card:not(:last-child) {
-    margin-right: 0;
-  }
-
-  .card.card-small {
-    height: 16px;
-    width: 168px;
-  }
-
-  .card-container .card:not(.highlight-card) {
-    cursor: pointer;
-  }
-
-  .card-container .card:not(.highlight-card):hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-  }
-
-  .card-container .card:not(.highlight-card):hover .material-icons path {
-    fill: rgb(105, 103, 103);
-  }
-
-  .card.highlight-card {
-    background-color: #1976d2;
-    color: white;
-    font-weight: 600;
-    border: none;
-    width: auto;
-    min-width: 30%;
-    position: relative;
-  }
-
-  .card.card.highlight-card span {
-    margin-left: 60px;
-  }
-
-  svg#rocket {
-    width: 80px;
-    position: absolute;
-    left: -10px;
-    top: -24px;
-  }
-
-  svg#rocket-smoke {
-    height: calc(100vh - 95px);
-    position: absolute;
-    top: 10px;
-    right: 180px;
-    z-index: -10;
-  }
-
-  a,
-  a:visited,
-  a:hover {
-    color: #1976d2;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #125699;
-  }
-
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-  }
-
-  .terminal::before {
-    content: "\2022 \2022 \2022";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-  }
-
-  .terminal pre {
-    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
-    color: white;
-    padding: 0 1rem 1rem;
-    margin: 0;
-  }
-
-  .circle-link {
-    height: 40px;
-    width: 40px;
-    border-radius: 40px;
-    margin: 8px;
-    background-color: white;
-    border: 1px solid #eeeeee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: 1s ease-out;
-  }
-
-  .circle-link:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  footer {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    line-height: 20px;
-  }
-
-  footer a {
-    display: flex;
-    align-items: center;
-  }
-
-  .github-star-badge {
-    color: #24292e;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 3px 10px;
-    border: 1px solid rgba(27,31,35,.2);
-    border-radius: 3px;
-    background-image: linear-gradient(-180deg,#fafbfc,#eff3f6 90%);
-    margin-left: 4px;
-    font-weight: 600;
-  }
-
-  .github-star-badge:hover {
-    background-image: linear-gradient(-180deg,#f0f3f6,#e6ebf1 90%);
-    border-color: rgba(27,31,35,.35);
-    background-position: -.5em;
-  }
-
-  .github-star-badge .material-icons {
-    height: 16px;
-    width: 16px;
-    margin-right: 4px;
-  }
-
-  svg#clouds {
-    position: fixed;
-    bottom: -160px;
-    left: -230px;
-    z-index: -10;
-    width: 1920px;
-  }
-
-  /* Responsive Styles */
-  @media screen and (max-width: 767px) {
-    .card-container > *:not(.circle-link) ,
-    .terminal {
-      width: 100%;
-    }
-
-    .card:not(.highlight-card) {
-      height: 16px;
-      margin: 8px 0;
-    }
-
-    .card.highlight-card span {
-      margin-left: 72px;
-    }
-
-    svg#rocket-smoke {
-      right: 120px;
-      transform: rotate(-5deg);
-    }
-  }
-
-  @media screen and (max-width: 575px) {
-    svg#rocket-smoke {
-      display: none;
-      visibility: hidden;
-    }
-  }
-</style>
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-  <img
-    width="40"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-  <span>Welcome</span>
-    <div class="spacer"></div>
-    <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
-      <svg id="twitter-logo" height="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-        <rect width="400" height="400" fill="none"/>
-        <path d="M153.62,301.59c94.34,0,145.94-78.16,145.94-145.94,0-2.22,0-4.43-.15-6.63A104.36,104.36,0,0,0,325,122.47a102.38,102.38,0,0,1-29.46,8.07,51.47,51.47,0,0,0,22.55-28.37,102.79,102.79,0,0,1-32.57,12.45,51.34,51.34,0,0,0-87.41,46.78A145.62,145.62,0,0,1,92.4,107.81a51.33,51.33,0,0,0,15.88,68.47A50.91,50.91,0,0,1,85,169.86c0,.21,0,.43,0,.65a51.31,51.31,0,0,0,41.15,50.28,51.21,51.21,0,0,1-23.16.88,51.35,51.35,0,0,0,47.92,35.62,102.92,102.92,0,0,1-63.7,22A104.41,104.41,0,0,1,75,278.55a145.21,145.21,0,0,0,78.62,23" fill="#fff"/>
-      </svg>
-    </a>
-    <a aria-label="Angular on YouTube" target="_blank" rel="noopener" href="https://youtube.com/angular" title="YouTube">
-      <svg id="youtube-logo" height="24" width="24" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/>
-      </svg>
-    </a>
-</div>
-
-<div class="content" role="main">
-
-  <!-- Highlight Card -->
-  <div class="card highlight-card card-small">
-
-    <svg id="rocket" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678" viewBox="0 0 101.678 101.678">
-      <title>Rocket Ship</title>
-      <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
-        <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)" fill="#dd0031"/>
-        <g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">
-          <path id="Path_33" data-name="Path 33" d="M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z" transform="translate(0.371 3.363)" fill="#fff"/>
-          <path id="Path_34" data-name="Path 34" d="M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z" transform="translate(0 0.005)" fill="#fff"/>
-        </g>
-      </g>
-    </svg>
-
-    <span>{{ title }} app is running!</span>
-
-    <svg id="rocket-smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632" viewBox="0 0 516.119 1083.632">
-      <title>Rocket Ship Smoke</title>
-      <path id="Path_40" data-name="Path 40" d="M644.6,141S143.02,215.537,147.049,870.207s342.774,201.755,342.774,201.755S404.659,847.213,388.815,762.2c-27.116-145.51-11.551-384.124,271.9-609.1C671.15,139.365,644.6,141,644.6,141Z" transform="translate(-147.025 -140.939)" fill="#f5f5f5"/>
-    </svg>
-
-  </div>
-
-  <!-- Resources -->
-  <h2>Resources</h2>
-  <p>Here are some links to help you get started:</p>
-
-  <div class="card-container">
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/tutorial">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-      <span>Learn Angular</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/cli">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
-      <span>CLI Documentation</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://blog.angular.io/">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
-      <span>Angular Blog</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-    <a class="card" target="_blank" rel="noopener" href="https://angular.io/devtools/">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><path d="M14.73,13.31C15.52,12.24,16,10.93,16,9.5C16,5.91,13.09,3,9.5,3S3,5.91,3,9.5C3,13.09,5.91,16,9.5,16 c1.43,0,2.74-0.48,3.81-1.27L19.59,21L21,19.59L14.73,13.31z M9.5,14C7.01,14,5,11.99,5,9.5S7.01,5,9.5,5S14,7.01,14,9.5 S11.99,14,9.5,14z"/><polygon points="10.29,8.44 9.5,6 8.71,8.44 6.25,8.44 8.26,10.03 7.49,12.5 9.5,10.97 11.51,12.5 10.74,10.03 12.75,8.44"/></g></g></svg>
-      <span>Angular DevTools</span>
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
-    </a>
-
-  </div>
-
-  <!-- Next Steps -->
-  <h2>Next Steps</h2>
-  <p>What do you want to do next with your app?</p>
-
-  <input type="hidden" #selection>
-
-  <div class="card-container">
-    <button class="card card-small" (click)="selection.value = 'component'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>New Component</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'material'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Angular Material</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'pwa'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Add PWA Support</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'dependency'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Add Dependency</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'test'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Run and Watch Tests</span>
-    </button>
-
-    <button class="card card-small" (click)="selection.value = 'build'" tabindex="0">
-      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-      <span>Build for Production</span>
-    </button>
-  </div>
-
-  <!-- Terminal -->
-  <div class="terminal" [ngSwitch]="selection.value">
-      <pre *ngSwitchDefault>ng generate component xyz</pre>
-      <pre *ngSwitchCase="'material'">ng add @angular/material</pre>
-      <pre *ngSwitchCase="'pwa'">ng add @angular/pwa</pre>
-      <pre *ngSwitchCase="'dependency'">ng add _____</pre>
-      <pre *ngSwitchCase="'test'">ng test</pre>
-      <pre *ngSwitchCase="'build'">ng build</pre>
-  </div>
-
-  <!-- Links -->
-  <div class="card-container">
-    <a class="circle-link" title="Animations" href="https://angular.io/guide/animations" target="_blank" rel="noopener">
-      <svg id="Group_20" data-name="Group 20" xmlns="http://www.w3.org/2000/svg" width="21.813" height="23.453" viewBox="0 0 21.813 23.453">
-        <path id="Path_15" data-name="Path 15" d="M4099.584,972.736h0l-10.882,3.9,1.637,14.4,9.245,5.153,9.245-5.153,1.686-14.4Z" transform="translate(-4088.702 -972.736)" fill="#ffa726"/>
-        <path id="Path_16" data-name="Path 16" d="M4181.516,972.736v23.453l9.245-5.153,1.686-14.4Z" transform="translate(-4170.633 -972.736)" fill="#fb8c00"/>
-        <path id="Path_17" data-name="Path 17" d="M4137.529,1076.127l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1058.315)" fill="#ffe0b2"/>
-        <path id="Path_18" data-name="Path 18" d="M4137.529,1051.705l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1036.757)" fill="#fff3e0"/>
-        <path id="Path_19" data-name="Path 19" d="M4137.529,1027.283l-7.7-3.723,4.417-2.721,7.753,3.723Z" transform="translate(-4125.003 -1015.199)" fill="#fff"/>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="CLI" href="https://cli.angular.io/" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="21.762" height="23.447" viewBox="0 0 21.762 23.447">
-        <title>Angular CLI Logo</title>
-        <g id="Group_21" data-name="Group 21" transform="translate(0)">
-          <path id="Path_20" data-name="Path 20" d="M2660.313,313.618h0l-10.833,3.9,1.637,14.4,9.2,5.152,9.244-5.152,1.685-14.4Z" transform="translate(-2649.48 -313.618)" fill="#37474f"/>
-          <path id="Path_21" data-name="Path 21" d="M2741.883,313.618v23.447l9.244-5.152,1.685-14.4Z" transform="translate(-2731.05 -313.618)" fill="#263238"/>
-          <path id="Path_22" data-name="Path 22" d="M2692.293,379.169h11.724V368.618h-11.724Zm11.159-.6h-10.608v-9.345h10.621v9.345Z" transform="translate(-2687.274 -362.17)" fill="#fff"/>
-          <path id="Path_23" data-name="Path 23" d="M2709.331,393.688l.4.416,2.265-2.28-2.294-2.294-.4.4,1.893,1.893Z" transform="translate(-2702.289 -380.631)" fill="#fff"/>
-          <rect id="Rectangle_12" data-name="Rectangle 12" width="3.517" height="0.469" transform="translate(9.709 13.744)" fill="#fff"/>
-        </g>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Find a Local Meetup" href="https://www.meetup.com/find/?keywords=angular" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24.607" height="23.447" viewBox="0 0 24.607 23.447">
-        <title>Meetup Logo</title>
-        <path id="logo--mSwarm" d="M21.221,14.95A4.393,4.393,0,0,1,17.6,19.281a4.452,4.452,0,0,1-.8.069c-.09,0-.125.035-.154.117a2.939,2.939,0,0,1-2.506,2.091,2.868,2.868,0,0,1-2.248-.624.168.168,0,0,0-.245-.005,3.926,3.926,0,0,1-2.589.741,4.015,4.015,0,0,1-3.7-3.347,2.7,2.7,0,0,1-.043-.38c0-.106-.042-.146-.143-.166a3.524,3.524,0,0,1-1.516-.69A3.623,3.623,0,0,1,2.23,14.557a3.66,3.66,0,0,1,1.077-3.085.138.138,0,0,0,.026-.2,3.348,3.348,0,0,1-.451-1.821,3.46,3.46,0,0,1,2.749-3.28.44.44,0,0,0,.355-.281,5.072,5.072,0,0,1,3.863-3,5.028,5.028,0,0,1,3.555.666.31.31,0,0,0,.271.03A4.5,4.5,0,0,1,18.3,4.7a4.4,4.4,0,0,1,1.334,2.751,3.658,3.658,0,0,1,.022.706.131.131,0,0,0,.1.157,2.432,2.432,0,0,1,1.574,1.645,2.464,2.464,0,0,1-.7,2.616c-.065.064-.051.1-.014.166A4.321,4.321,0,0,1,21.221,14.95ZM13.4,14.607a2.09,2.09,0,0,0,1.409,1.982,4.7,4.7,0,0,0,1.275.221,1.807,1.807,0,0,0,.9-.151.542.542,0,0,0,.321-.545.558.558,0,0,0-.359-.534,1.2,1.2,0,0,0-.254-.078c-.262-.047-.526-.086-.787-.138a.674.674,0,0,1-.617-.75,3.394,3.394,0,0,1,.218-1.109c.217-.658.509-1.286.79-1.918a15.609,15.609,0,0,0,.745-1.86,1.95,1.95,0,0,0,.06-1.073,1.286,1.286,0,0,0-1.051-1.033,1.977,1.977,0,0,0-1.521.2.339.339,0,0,1-.446-.042c-.1-.092-.2-.189-.307-.284a1.214,1.214,0,0,0-1.643-.061,7.563,7.563,0,0,1-.614.512A.588.588,0,0,1,10.883,8c-.215-.115-.437-.215-.659-.316a2.153,2.153,0,0,0-.695-.248A2.091,2.091,0,0,0,7.541,8.562a9.915,9.915,0,0,0-.405.986c-.559,1.545-1.015,3.123-1.487,4.7a1.528,1.528,0,0,0,.634,1.777,1.755,1.755,0,0,0,1.5.211,1.35,1.35,0,0,0,.824-.858c.543-1.281,1.032-2.584,1.55-3.875.142-.355.28-.712.432-1.064a.548.548,0,0,1,.851-.24.622.622,0,0,1,.185.539,2.161,2.161,0,0,1-.181.621c-.337.852-.68,1.7-1.018,2.552a2.564,2.564,0,0,0-.173.528.624.624,0,0,0,.333.71,1.073,1.073,0,0,0,.814.034,1.22,1.22,0,0,0,.657-.655q.758-1.488,1.511-2.978.35-.687.709-1.37a1.073,1.073,0,0,1,.357-.434.43.43,0,0,1,.463-.016.373.373,0,0,1,.153.387.7.7,0,0,1-.057.236c-.065.157-.127.316-.2.469-.42.883-.846,1.763-1.262,2.648A2.463,2.463,0,0,0,13.4,14.607Zm5.888,6.508a1.09,1.09,0,0,0-2.179.006,1.09,1.09,0,0,0,2.179-.006ZM1.028,12.139a1.038,1.038,0,1,0,.01-2.075,1.038,1.038,0,0,0-.01,2.075ZM13.782.528a1.027,1.027,0,1,0-.011,2.055A1.027,1.027,0,0,0,13.782.528ZM22.21,6.95a.882.882,0,0,0-1.763.011A.882.882,0,0,0,22.21,6.95ZM4.153,4.439a.785.785,0,1,0,.787-.78A.766.766,0,0,0,4.153,4.439Zm8.221,18.22a.676.676,0,1,0-.677.666A.671.671,0,0,0,12.374,22.658ZM22.872,12.2a.674.674,0,0,0-.665.665.656.656,0,0,0,.655.643.634.634,0,0,0,.655-.644A.654.654,0,0,0,22.872,12.2ZM7.171-.123A.546.546,0,0,0,6.613.43a.553.553,0,1,0,1.106,0A.539.539,0,0,0,7.171-.123ZM24.119,9.234a.507.507,0,0,0-.493.488.494.494,0,0,0,.494.494.48.48,0,0,0,.487-.483A.491.491,0,0,0,24.119,9.234Zm-19.454,9.7a.5.5,0,0,0-.488-.488.491.491,0,0,0-.487.5.483.483,0,0,0,.491.479A.49.49,0,0,0,4.665,18.936Z" transform="translate(0 0.123)" fill="#f64060"/>
-      </svg>
-    </a>
-
-    <a class="circle-link" title="Join the Conversation on Discord" href="https://discord.gg/angular" target="_blank" rel="noopener">
-      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 245 240">
-        <title>Discord Logo</title>
-        <path d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/>
-        <path d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-      Love Angular?&nbsp;
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener"> Give our repo a star.
-        <div class="github-star-badge">
-            <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-          Star
-        </div>
-      </a>
-      <a href="https://github.com/angular/angular" target="_blank" rel="noopener">
-        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="#1976d2"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-      </a>
-  </footer>
-
-  <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
-    <title>Gray Clouds Background</title>
-    <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
-  </svg>
-
-</div>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet></router-outlet>
+<header class="u-clearfix u-header u-header" id="sec-7c6d">
+	<div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+		<a href="https://nicepage.com" class="u-image u-logo u-image-1">
+			<img src="assets/images/default-logo.png" class="u-logo-image u-logo-image-1" />
+		</a>
+		<nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+			<div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px">
+				<a
+					class="
+						u-button-style
+						u-custom-left-right-menu-spacing
+						u-custom-padding-bottom
+						u-custom-top-bottom-menu-spacing
+						u-nav-link
+						u-text-active-palette-1-base
+						u-text-hover-palette-2-base
+					"
+					href="#"
+				>
+					<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use></svg>
+					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<defs>
+							<symbol id="menu-hamburger" viewBox="0 0 16 16" style="width: 16px; height: 16px">
+								<rect y="1" width="16" height="2"></rect>
+								<rect y="7" width="16" height="2"></rect>
+								<rect y="13" width="16" height="2"></rect>
+							</symbol>
+						</defs>
+					</svg>
+				</a>
+			</div>
+			<div class="u-nav-container-collapse">
+				<div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+					<div class="u-inner-container-layout u-sidenav-overflow">
+						<div class="u-menu-close"></div>
+						<ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
+							<li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a></li>
+							<li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html">About</a></li>
+							<li class="u-nav-item">
+								<a class="u-button-style u-nav-link" href="Contact.html">Contact</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+			</div>
+		</nav>
+	</div>
+</header>
+<section class="u-align-center u-clearfix u-custom-color-1 u-section-1" id="carousel_efcf">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<h2 class="u-custom-font u-font-raleway u-text u-text-1">Pro Decor IF</h2>
+		<div
+			class="u-border-20 u-border-white u-image u-image-circle u-image-1"
+			alt=""
+			data-image-width="1488"
+			data-image-height="1488"
+		></div>
+		<h1 class="u-text u-text-body-alt-color u-text-2">Магазин фарб, декоративних штукатурок</h1>
+	</div>
+</section>
+<section class="u-align-center u-clearfix u-section-2" id="carousel_663e">
+	<div class="u-custom-color-1 u-expanded-width u-shape u-shape-rectangle u-shape-1"></div>
+	<img
+		class="u-expanded-width-sm u-expanded-width-xs u-image u-image-1"
+		data-image-width="1600"
+		data-image-height="1067"
+		src="assets/images/242099695_126978309682158_2916934046276885547_n.jpeg"
+	/>
+	<div class="u-list u-list-1">
+		<div class="u-repeater u-repeater-1">
+			<div class="u-align-center u-container-style u-list-item u-repeater-item u-white u-list-item-1">
+				<div class="u-container-layout u-similar-container u-valign-top u-container-layout-1">
+					<span class="u-custom-item u-icon u-icon-rectangle u-text-palette-3-base u-icon-1">
+						<svg
+							class="u-svg-link"
+							preserveAspectRatio="xMidYMin slice"
+							viewBox="0 0 512 512.00001"
+							style=""
+						>
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-0bdf"></use></svg
+						><svg class="u-svg-content" viewBox="0 0 512 512.00001" id="svg-0bdf">
+							<path
+								d="m503.464844 17.066406c4.714844 0 8.535156-3.820312 8.535156-8.53125 0-4.714844-3.820312-8.535156-8.535156-8.535156h-220.546875c-8.453125-.0078125-16.609375 3.132812-22.875 8.804688l-245.96875 222.160156c-8.953125 8.09375-14.0664065 19.597656-14.074219 31.667968v27.5c0 4.714844 3.820312 8.535157 8.535156 8.535157 4.710938 0 8.53125-3.820313 8.53125-8.535157v-27.5c.007813-7.242187 3.074219-14.140624 8.441406-19l34.226563-30.914062v196.882812h-51.199219c-4.714844 0-8.535156 3.820313-8.535156 8.53125 0 4.714844 3.820312 8.535157 8.535156 8.535157h8.53125v68.265625c.011719 9.421875 7.644532 17.054687 17.066406 17.066406h460.800782c9.421875-.011719 17.054687-7.644531 17.066406-17.066406v-324.265625c-.011719-9.421875-7.644531-17.058594-17.066406-17.066407h-51.199219v-136.535156zm-220.546875 0h58.414062v136.535156h-51.199219c-4.710937 0-8.53125 3.820313-8.53125 8.53125 0 4.714844 3.820313 8.535157 8.53125 8.535157h8.535157v59.730469c-.003907 4.710937-3.824219 8.53125-8.535157 8.535156h-25.597656v-211.191406l6.949219-6.277344c3.132813-2.835938 7.207031-4.402344 11.433594-4.398438zm-69.585938 221.867188h-17.066406c-4.710937 0-8.53125 3.820312-8.53125 8.53125 0 4.714844 3.820313 8.535156 8.53125 8.535156h8.535156v59.734375c-.003906 4.710937-3.824219 8.527344-8.535156 8.53125h-25.597656v-211.742187l76.796875-69.363282v195.773438zm-136.53125-41.628906 76.800781-69.363282v196.324219h-51.203124c-4.710938 0-8.53125 3.820313-8.53125 8.535156 0 4.710938 3.820312 8.53125 8.53125 8.53125h8.535156v59.734375c-.003906 4.710938-3.824219 8.53125-8.535156 8.535156h-25.597657zm264.53125 297.628906c-9.417969-.011719-17.054687-7.644532-17.066406-17.066406v-51.199219h85.335937v51.199219c-.011718 9.421874-7.648437 17.054687-17.066406 17.066406zm8.316407-122.433594c-18.144532-5.808594-34.359376-16.464844-46.886719-30.824219-11.414063-15.257812-18.457031-33.335937-20.367188-52.296875 18.152344 5.800782 34.367188 16.460938 46.894531 30.820313 11.410157 15.261719 18.449219 33.339843 20.359376 52.300781zm3.460937-46.824219c-.347656-4.75-.296875-9.523437.140625-14.265625 2.808594-21.066406 11.40625-40.941406 24.832031-57.414062 10.050781 18.714844 14.738281 39.839844 13.542969 61.050781-.289062 3.046875-.785156 6.070313-1.484375 9.050781-5.214844 9.664063-9.109375 19.980469-11.570313 30.679688-.046874.109375-.039062.226562-.082031.339844-1.558593 6.699218-2.636719 13.5-3.214843 20.347656h-8.144532c-1.375-17.351563-6.136718-34.269532-14.019531-49.789063zm60.007813-5.472656c12.550781-14.339844 28.769531-24.988281 46.917968-30.804687-1.90625 18.960937-8.957031 37.039062-20.394531 52.277343-12.554687 14.339844-28.773437 24.988281-46.917969 30.808594 1.90625-18.960937 8.957032-37.039063 20.394532-52.28125zm13.550781 72.332031.007812 17.066406h-119.476562v-17.066406zm68.265625 102.398438h-73.015625c3.074219-5.164063 4.714843-11.058594 4.75-17.066406v-51.199219c9.417969-.011719 17.054687-7.648438 17.066406-17.066407v-17.066406c-.011719-9.421875-7.648437-17.058594-17.066406-17.070312h-.332031c10.082031-6.144532 19.0625-13.9375 26.574218-23.046875 16-21.632813 24.738282-47.773438 24.957032-74.679688-.042969-2.523437-1.199219-4.902343-3.160157-6.492187-1.964843-1.585938-4.527343-2.226563-7.007812-1.742188-21.890625 4.972656-42.15625 15.433594-58.886719 30.398438-2.007812-23.28125-9.664062-45.722656-22.304688-65.375-1.425781-2.082032-3.703124-3.425782-6.214843-3.667969-2.511719-.230469-4.996094.652344-6.800781 2.414063-18.617188 19.371093-31.25 43.710937-36.375 70.085937-17.273438-16.839844-38.882813-28.558594-62.417969-33.851563-2.476563-.484374-5.042969.152344-7.003907 1.742188-1.960937 1.589844-3.117187 3.964844-3.160156 6.488281.214844 26.90625 8.953125 53.046875 24.957032 74.679688 7.507812 9.109375 16.488281 16.902343 26.570312 23.046875h-8.863281c-9.421875.011718-17.054688 7.648437-17.066407 17.070312v17.066406c.011719 9.417969 7.644532 17.054688 17.066407 17.066407v51.199219c.035156 6.007812 1.675781 11.902343 4.746093 17.066406h-277.8125v-68.265625h68.265626c14.132812-.015625 25.585937-11.46875 25.601562-25.601563v-59.734375h68.265625c14.132813-.015625 25.585937-11.464843 25.601563-25.597656v-59.734375h68.265624c14.132813-.015625 25.585938-11.46875 25.601563-25.601562v-59.730469h34.144531l85.28125-.007813.039063.007813.042969-.011719h59.691406zm-68.265625-341.332032h-68.269531v-136.535156h68.269531zm0 0"
+							></path>
+							<path
+								d="m384 469.332031h-34.132812c-4.714844 0-8.535157 3.820313-8.535157 8.535157 0 4.710937 3.820313 8.53125 8.535157 8.53125h34.132812c4.710938 0 8.535156-3.820313 8.535156-8.53125 0-4.714844-3.824218-8.535157-8.535156-8.535157zm0 0"
+							></path>
+						</svg>
+					</span>
+					<h4 class="u-text u-text-1">Marmorino Unico і рідкі метали</h4>
+					<p class="u-text u-text-2">Багатство і розкіш у вашій оселі</p>
+				</div>
+			</div>
+			<div
+				class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-2"
+			>
+				<div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
+					<span class="u-custom-item u-icon u-icon-rectangle u-text-palette-3-base u-icon-2">
+						<svg
+							class="u-svg-link"
+							preserveAspectRatio="xMidYMin slice"
+							viewBox="0 0 510.748 510.748"
+							style=""
+						>
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-dad4"></use></svg
+						><svg class="u-svg-content" viewBox="0 0 510.748 510.748" id="svg-dad4">
+							<g>
+								<path
+									d="m448.914 206.73-27.603-30.529c5.365-9.065 7.28-19.631 5.372-30.096-2.098-11.507-8.552-21.509-18.172-28.163l-39.826-27.544c.251-6.43-.931-12.888-3.547-18.974-4.62-10.746-13.147-19.05-24.014-23.383l-88.073-35.116c-10.675-4.256-22.306-4.141-32.75.146-7.946-8.062-18.983-13.071-31.171-13.071h-94.815c-24.147 0-43.792 19.645-43.792 43.792v375.757c0 50.288 40.912 91.199 91.199 91.199 22.885 0 43.826-8.475 59.855-22.448.23-.164.455-.338.67-.531l170.744-153.661c3.078-2.771 3.328-7.513.558-10.592-2.772-3.08-7.517-3.329-10.592-.558l-7.034 6.331-22.855-25.277 35.882-51.883 32.621 36.078-14.842 13.358c-3.078 2.771-3.328 7.513-.558 10.592 1.481 1.646 3.525 2.483 5.577 2.483 1.788 0 3.582-.635 5.016-1.925l49.037-44.132c8.677-7.845 13.778-18.6 14.366-30.282s-3.408-22.895-11.253-31.571zm-36.988-57.935c1.379 7.565-.271 15.216-4.646 21.541l-20.365 29.447-46.364-32.064 24.546-61.563 34.881 24.124c6.326 4.374 10.569 10.949 11.948 18.515zm-71.287 117.9-31.002-21.441 25.214-63.239 43.531 30.105zm-46.276 66.912-15.641-10.817 25.215-63.24 28.169 19.482zm11.544-119.498-21.736-8.667c-3.846-1.533-8.209.341-9.744 4.189-1.534 3.848.342 8.21 4.189 9.745l21.735 8.666-25.764 64.618-41.665-16.613v-74.89l15.874 6.329c.911.363 1.851.535 2.775.535 2.979 0 5.798-1.788 6.969-4.724 1.534-3.848-.341-8.21-4.188-9.745l-21.43-8.544v-74.89l98.749 39.373zm-87.985-46.809h-84.956c-4.142 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5h84.956v69.565h-152.399v-69.565h35.48c4.142 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5h-35.48v-69.565h152.398v69.565zm-152.399 99.565h152.398v69.565h-152.398zm167.399 25.33 36.11 14.398-36.11 90.566zm46.735 89.047 8.317 9.198-38.873 34.983zm-32.411 20.494 25.777-64.651 12.809 8.858zm.25-374.877 88.073 35.116c7.144 2.848 12.75 8.308 15.787 15.373 2.089 4.857 2.79 10.074 2.099 15.181-.012.059-.018.119-.029.178-.32 2.261-.91 4.5-1.778 6.675l-14.423 36.175-104.303-41.588v-50.177c0-6.378-1.382-12.437-3.844-17.908 6.018-1.701 12.447-1.406 18.418.975zm-153.181-11.859h94.815c15.875 0 28.792 12.916 28.792 28.792v38.944h-152.399v-38.944c0-15.876 12.916-28.792 28.792-28.792zm-28.792 404.549v-68.119h152.398v68.119c0 42.017-34.183 76.199-76.199 76.199s-76.199-34.183-76.199-76.199zm279.25-80.225-45.649 41.081-10.703-11.837 35.882-51.883zm100.413-101.777c-.386 7.681-3.74 14.751-9.433 19.898l-23.032 20.728-35.007-38.717 34.916-50.487 25.156 27.821c5.159 5.705 7.787 13.076 7.4 20.757z"
+								></path>
+								<path
+									d="m140.023 383.857c-19.832 0-35.966 16.134-35.966 35.966s16.134 35.966 35.966 35.966 35.966-16.134 35.966-35.966-16.134-35.966-35.966-35.966zm0 56.933c-11.561 0-20.966-9.405-20.966-20.966s9.405-20.966 20.966-20.966 20.966 9.405 20.966 20.966-9.405 20.966-20.966 20.966z"
+								></path>
+							</g>
+						</svg>
+					</span>
+					<h4 class="u-text u-text-3">Travertino, Marmorino</h4>
+					<p class="u-text u-text-4">Піклування про здоров'я сім'ї та екологію</p>
+				</div>
+			</div>
+			<div
+				class="u-align-center u-container-style u-list-item u-repeater-item u-video-cover u-white u-list-item-3"
+			>
+				<div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
+					<span class="u-custom-item u-icon u-icon-rectangle u-icon-3">
+						<svg
+							class="u-svg-link"
+							preserveAspectRatio="xMidYMin slice"
+							viewBox="0 -36 512.00054 512"
+							style=""
+						>
+							<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-cee6"></use></svg
+						><svg class="u-svg-content" viewBox="0 -36 512.00054 512" id="svg-cee6">
+							<path
+								d="m255.996094 379.996094c-5.519532 0-10 4.480468-10 10 0 5.519531 4.480468 10 10 10 5.523437 0 10-4.480469 10-10 0-5.519532-4.476563-10-10-10zm0 0"
+							></path>
+							<path
+								d="m470.902344 30.738281c-4.191406-17.601562-20.039063-30.738281-38.90625-30.738281h-351.996094c-18.863281 0-34.707031 13.132812-38.902344 30.734375-22.679687 3.636719-37.640625 20.929687-40.644531 47.769531-.390625 3.511719-.746094 9.261719-.085937 12.726563.445312 57.539062 30.917968 116.820312 69.46875 158.875l8.851562 161.855469c0 .058593.003906.113281.007812.167968 1.121094 15.625 14.265626 27.867188 29.925782 27.867188h292.757812c16.222656 0 30.839844-12.761719 31.921875-27.867188.003907-.054687.007813-.113281.011719-.167968.847656-12.910157 7.5625-138.042969 8.320312-152.160157 40.609376-41.332031 68.960938-101.925781 70.351563-172.511719.519531-26.378906-12.765625-52.011718-41.082031-56.550781zm-390.902344-10.738281h351.996094c10.328125 0 18.855468 7.871094 19.890625 17.9375-.277344 1.347656-.285157 2.730469.003906 4.109375-1.03125 10.070313-9.5625 17.953125-19.894531 17.953125h-56c-16.542969 0-30 13.457031-30 30v80c0 5.511719-4.484375 10-10 10-5.511719 0-10-4.488281-10-10v-20c0-16.542969-13.457032-30-30-30-16.539063 0-30 13.457031-30 30v40c0 5.511719-4.484375 10-10 10-5.511719 0-10-4.488281-10-10v-60c0-16.542969-13.457032-30-29.996094-30-16.542969 0-30 13.457031-30 30v20c0 5.511719-4.488281 10-10 10-5.515625 0-10-4.488281-10-10v-60c0-16.542969-13.457031-30-30-30h-56c-10.140625 0-18.785156-7.609375-19.875-17.867188.300781-1.386718.324219-2.792968-.003906-4.285156 1.078125-10.019531 9.578125-17.847656 19.878906-17.847656zm260.367188 274.105469c-7.199219-9.972657-20.179688-14.777344-32.828126-11.203125-16.722656 4.707031-34.0625 7.09375-51.539062 7.09375s-34.816406-2.386719-51.542969-7.09375c-12.511719-3.523438-25.316406 1.113281-32.589843 10.875-27.417969-6.847656-56.363282-25.089844-82.460938-52.042969l-8.84375-161.734375h55.4375c5.515625 0 10 4.484375 10 10v59.996094c0 16.542968 13.457031 30 30 30s30-13.457032 30-30v-20c0-5.511719 4.484375-10 10-10 5.511719 0 10 4.488281 10 10v60c0 16.542968 13.457031 30 30 30 16.539062 0 30-13.457032 30-30v-40c0-5.511719 4.484375-10 10-10 5.511719 0 10 4.488281 10 10v20c0 16.542968 13.457031 30 29.996094 30 16.542968 0 30-13.457032 30-30v-79.996094c0-5.515625 4.488281-10 10-10h55.4375l-9.347656 170.976562c-23.996094 22.640626-52.070313 37.449219-81.71875 43.128907zm-153.855469 14.296875c1.613281-4.824219 6.917969-7.828125 12.527343-6.25 18.484376 5.207031 37.648438 7.84375 56.957032 7.84375s38.472656-2.636719 56.972656-7.847656c6.535156-1.847657 13.027344 2.644531 13.027344 9.457031 0 4.484375-2.769532 8.410156-6.734375 9.546875-20.480469 5.867187-41.765625 8.84375-63.265625 8.84375-21.496094 0-42.78125-2.976563-63.261719-8.84375-5.269531-1.507813-7.945313-7.660156-6.222656-12.75zm-166.496094-221.011719c-.179687-4.234375.660156-19.484375 8.996094-28.921875 3.296875-3.734375 7.441406-6.199219 12.53125-7.460938 2.863281 10.035157 9.558593 18.613282 18.707031 23.789063l7.753906 141.847656c-51.609375-68.644531-46.984375-125.542969-47.988281-129.253906zm381.359375 332.605469h-292.753906c-5.199219 0-9.566406-4.046875-9.972656-9.226563l-.589844-10.773437h120.589844c5.523437 0 10-4.476563 10-10 0-5.523438-4.476563-10-10-10h-121.683594l-5.96875-109.167969c24.09375 21.066406 49.964844 35.613281 75.058594 42.101563.554687 12.808593 9.089843 23.988281 21.171874 27.449218 22.273438 6.382813 45.410157 9.617188 68.769532 9.617188 23.363281 0 46.5-3.234375 68.773437-9.617188 11.9375-3.417968 20.417969-14.371094 21.15625-26.992187 26.605469-5.394531 51.964844-17.25 74.648438-34.820313l-5.546875 101.429688h-119.03125c-5.523438 0-10 4.480468-10 10 0 5.523437 4.476562 10 10 10h117.941406l-.589844 10.769531c-.386718 4.667969-6.289062 9.230469-11.972656 9.230469zm90.605469-332.605469c-.921875 3.40625 3.375 73.097656-48.578125 140.035156l8.347656-152.65625c8.976562-5.125 15.785156-13.628906 18.695312-23.765625 5.09375 1.257813 9.242188 3.726563 12.539063 7.464844 8.332031 9.4375 9.175781 24.6875 8.996094 28.921875zm0 0"
+							></path>
+						</svg>
+					</span>
+					<h4 class="u-text u-text-5">Фарби та тонкошарові штукатурки</h4>
+					<p class="u-text u-text-6">
+						Світ фактур, кольорів, мату та глянцю&nbsp; багатогранної Італії&nbsp;
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="u-align-center u-clearfix u-section-3" id="carousel_0f64">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<p class="u-align-center u-text u-text-1">
+			На вас чекають екологічні вапняні покриття преміум класу з усіма необхідними сертифікатами України та
+			Європи. Широкий вибір технік, фактур, кольорів.
+			<br />
+			<br />
+			Торгові марки Colorificio Veneziano та Deco Terra широко відомі за межами України. Чимало об'єктів у світі
+			виконані нашими матеріалами. Готелі, салони, шоу-руми, ресторани, кафе, виставкові зали у ОАЕ,&nbsp; Китаї,
+			Сербії, Італії, Данії, Німеччині, Чехії, Швейцарії, Норвегії, США, а також безліч квартир, особняків та вілл
+			тішать своїх власників не лише красою і міцністю, але й довговічністю та екологічністю!
+			<br />
+			<br />
+			Матеріали мають широкий спектр використання: фасад, стіни, підлога, стеля, ванна кімната, душ, тераси,
+			балкони, лоджії...
+			<br />
+			Продукція розроблена таким чином, щоб мінімалізувати появу плісняви, цвілі чи моху.
+			<br />
+			Рідкі метали 9-ти видів дозволяють прикрасити свою оселю ззовні чи зсередини різними трафаретними
+			техніками.&nbsp;
+		</p>
+		<h6 class="u-custom-font u-font-raleway u-text u-text-2">
+			Єдиний у Європі однокомпонентний матеріал Marmorin Unico - найдовговічніше з відомих покриттів. Завдяки
+			товщині всього 3мм - це еластичне, гідрофобне покриття, яке підходить для усіх типів теплих підлог, тепліше
+			за керамічну плитку і ламінат; може наноситись на вже існуючу керамічну плитку, яка втратила свою
+			актуальність.
+		</h6>
+		<p class="u-text u-text-3">
+			<br />
+			&nbsp;Фасадні штукатурки, яких точно не має у сусідів, дозволять вам виявити свою індивідуальність і
+			художній смак.&nbsp;
+			<br />
+			А спеціальні пропитки і грунти захистять фасад від грязних розводів, плісені, моху, грибка чи цвілі.
+			<br />
+			Обираючи Pro Decor IF, ви обираєте найкраще! І вносите частинку сонячної та життєрадісної Італії у своє
+			життя&nbsp;
+		</p>
+	</div>
+</section>
+<section class="u-align-center u-clearfix u-section-4" id="carousel_35ef">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<h2 class="u-custom-font u-font-raleway u-text u-text-default u-text-1">Information partners</h2>
+		<div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+			<div class="u-layout">
+				<div class="u-layout-row">
+					<div class="u-align-center u-container-style u-layout-cell u-left-cell u-size-20 u-layout-cell-1">
+						<div class="u-container-layout u-valign-middle u-container-layout-1">
+							<img
+								src="assets/images/Colorificio-Veneziano.png"
+								alt=""
+								class="u-image u-image-contain u-image-default u-image-1"
+								data-image-width="780"
+								data-image-height="600"
+							/>
+						</div>
+					</div>
+					<div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-2">
+						<div class="u-container-layout u-valign-middle u-container-layout-2">
+							<img
+								src="assets/images/logo.png"
+								alt=""
+								class="u-image u-image-contain u-image-default u-image-2"
+								data-image-width="642"
+								data-image-height="294"
+							/>
+						</div>
+					</div>
+					<div class="u-align-center u-container-style u-layout-cell u-size-20 u-layout-cell-3">
+						<div class="u-container-layout u-valign-middle u-container-layout-3">
+							<img
+								src="assets/images/slogan-The-Art-of-Paint.png"
+								alt=""
+								class="u-image u-image-contain u-image-default u-image-3"
+								data-image-width="563"
+								data-image-height="259"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="u-align-center u-clearfix u-custom-color-1 u-section-5" id="carousel_d754">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<div
+			alt=""
+			class="u-align-center u-border-20 u-border-white u-image u-image-circle u-image-1"
+			data-image-width="1200"
+			data-image-height="1600"
+		></div>
+		<p class="u-text u-text-body-alt-color u-text-1">
+			<i></i>
+			Супермиючі, стійкі до стирання фарби: вапняні, акрилові, фактурні, матові чи декоративні - не залишать
+			жодного сумніву в тому, що ви обрали правильний магазин!
+		</p>
+	</div>
+</section>
+<section class="u-align-center u-clearfix u-valign-top u-section-6" id="carousel_3a6b">
+	<div
+		class="u-expanded-width u-gallery u-layout-grid u-lightbox u-show-text-on-hover u-gallery-1"
+		id="carousel-4519"
+	>
+		<div class="u-gallery-inner u-gallery-inner-1" role="listbox">
+			<div class="u-effect-fade u-gallery-item u-gallery-item-1">
+				<div class="u-back-slide" data-image-width="1200" data-image-height="1600">
+					<img
+						class="u-back-image u-expanded u-back-image-1"
+						src="assets/images/240635222_121381020241887_1718340264751786894_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-1">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+			<div class="u-effect-fade u-gallery-item u-gallery-item-2">
+				<div class="u-back-slide" data-image-width="1600" data-image-height="1270">
+					<img
+						class="u-back-image u-expanded u-back-image-2"
+						src="assets/images/240585048_121381080241881_769473991773296555_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-2">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+			<div class="u-effect-fade u-gallery-item u-gallery-item-3">
+				<div class="u-back-slide" data-image-width="1440" data-image-height="1440">
+					<img
+						class="u-back-image u-expanded u-back-image-3"
+						src="assets/images/242055111_126806363032686_7468632375415787971_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-3">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+			<div class="u-effect-fade u-gallery-item u-gallery-item-4">
+				<div class="u-back-slide" data-image-width="1440" data-image-height="1440">
+					<img
+						class="u-back-image u-expanded u-back-image-4"
+						src="assets/images/242096773_126806353032687_7125536964882949920_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-4">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+			<div class="u-effect-fade u-gallery-item u-gallery-item-5">
+				<div class="u-back-slide" data-image-width="900" data-image-height="1600">
+					<img
+						class="u-back-image u-expanded u-back-image-5"
+						src="assets/images/220677817_116367190743270_3528928145889971609_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-5">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+			<div class="u-effect-fade u-gallery-item u-gallery-item-6">
+				<div class="u-back-slide" data-image-width="900" data-image-height="900">
+					<img
+						class="u-back-image u-expanded u-back-image-6"
+						src="assets/images/221691772_103466768699979_455622328975204646_n.jpeg"
+					/>
+				</div>
+				<div class="u-align-center u-over-slide u-shading u-over-slide-6">
+					<h3 class="u-gallery-heading"></h3>
+					<p class="u-gallery-text"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a
+		href="https://nicepage.com/c/sale-website-templates"
+		class="u-border-none u-btn u-btn-rectangle u-button-style u-palette-3-base u-btn-1"
+	>
+		посилання на facebook
+	</a>
+</section>
+<section class="u-clearfix u-section-7" id="carousel_f63e">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<span class="u-icon u-icon-circle u-text-palette-3-light-2 u-icon-1">
+			<svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 409.294 409.294" style="">
+				<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-c865"></use></svg
+			><svg class="u-svg-content" viewBox="0 0 409.294 409.294" id="svg-c865">
+				<path
+					d="m0 204.647v175.412h175.412v-175.412h-116.941c0-64.48 52.461-116.941 116.941-116.941v-58.471c-96.728 0-175.412 78.684-175.412 175.412z"
+				></path>
+				<path
+					d="m409.294 87.706v-58.471c-96.728 0-175.412 78.684-175.412 175.412v175.412h175.412v-175.412h-116.941c0-64.48 52.461-116.941 116.941-116.941z"
+				></path>
+			</svg>
+		</span>
+		<div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+			<div class="u-layout">
+				<div class="u-layout-row">
+					<div class="u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+						<div
+							class="
+								u-container-layout
+								u-valign-middle-lg
+								u-valign-middle-md
+								u-valign-middle-sm
+								u-valign-middle-xs
+								u-container-layout-1
+							"
+						>
+							<h3 class="u-align-center u-text u-text-1">
+								<span style="font-weight: 700">Taras kit,</span>
+								artist
+							</h3>
+							<p class="u-align-center u-text u-text-grey-40 u-text-2">Відгуки клієнтів.</p>
+						</div>
+					</div>
+					<div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+						<div class="u-container-layout u-container-layout-2">
+							<h3 class="u-align-center u-text u-text-3">
+								<span style="font-weight: 700">Nazar kovtun,</span>
+								developer
+							</h3>
+							<p class="u-align-center u-text u-text-grey-40 u-text-4">Відгуки клієнтів.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="u-clearfix u-custom-color-1 u-section-8" id="carousel_3005">
+	<div class="u-clearfix u-sheet u-sheet-1">
+		<div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+			<div class="u-layout">
+				<div class="u-layout-row">
+					<div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-30 u-layout-cell-1">
+						<div class="u-container-layout u-container-layout-1">
+							<h2 class="u-text u-text-1">ЗВ’ЯЗАТИСЯ З НАМИ</h2>
+							<p class="u-text u-text-2">
+								<a
+									class="
+										u-active-none
+										u-border-none
+										u-btn
+										u-button-link
+										u-button-style
+										u-hover-none
+										u-none
+										u-text-palette-1-base
+										u-btn-1
+									"
+									href="https://nicepage.com"
+								>
+									вулиця Макогона, 25 Івано-ФранківськІвано-Франківська область Україна 76000
+								</a>
+							</p>
+							<a
+								href="https://nicepage.com/html5-template"
+								class="
+									u-active-none
+									u-border-2
+									u-border-palette-1-base
+									u-btn
+									u-btn-rectangle
+									u-button-style
+									u-hover-none
+									u-none
+									u-radius-0
+									u-btn-2
+								"
+							>
+								050 750 0414
+							</a>
+							<p class="u-text u-text-3">
+								<a href="mailto:contacts@esbnyc.com">contacts@esbnyc.com</a>
+							</p>
+							<div class="u-social-icons u-spacing-10 u-social-icons-1">
+								<a
+									class="u-social-url"
+									title="facebook"
+									target="_blank"
+									href="https://facebook.com/name"
+								>
+									<span
+										class="
+											u-icon u-icon-circle u-social-facebook u-social-icon u-text-black u-icon-1
+										"
+									>
+										<svg
+											class="u-svg-link"
+											preserveAspectRatio="xMidYMin slice"
+											viewBox="0 0 112 112"
+											style=""
+										>
+											<use
+												xmlns:xlink="http://www.w3.org/1999/xlink"
+												xlink:href="#svg-0d24"
+											></use></svg
+										><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-0d24">
+											<path
+												fill="currentColor"
+												d="M75.5,28.8H65.4c-1.5,0-4,0.9-4,4.3v9.4h13.9l-1.5,15.8H61.4v45.1H42.8V58.3h-8.8V42.4h8.8V32.2
+	c0-7.4,3.4-18.8,18.8-18.8h13.8v15.4H75.5z"
+											></path>
+										</svg>
+									</span>
+								</a>
+								<a
+									class="u-social-url"
+									title="instagram"
+									target="_blank"
+									href="https://www.instagram.com/name"
+								>
+									<span
+										class="
+											u-icon u-icon-circle u-social-icon u-social-instagram u-text-black u-icon-2
+										"
+									>
+										<svg
+											class="u-svg-link"
+											preserveAspectRatio="xMidYMin slice"
+											viewBox="0 0 112 112"
+											style=""
+										>
+											<use
+												xmlns:xlink="http://www.w3.org/1999/xlink"
+												xlink:href="#svg-6096"
+											></use></svg
+										><svg class="u-svg-content" viewBox="0 0 112 112" x="0" y="0" id="svg-6096">
+											<path
+												fill="currentColor"
+												d="M55.9,32.9c-12.8,0-23.2,10.4-23.2,23.2s10.4,23.2,23.2,23.2s23.2-10.4,23.2-23.2S68.7,32.9,55.9,32.9z
+	 M55.9,69.4c-7.4,0-13.3-6-13.3-13.3c-0.1-7.4,6-13.3,13.3-13.3s13.3,6,13.3,13.3C69.3,63.5,63.3,69.4,55.9,69.4z"
+											></path>
+											<path
+												fill="#FFFFFF"
+												d="M79.7,26.8c-3,0-5.4,2.5-5.4,5.4s2.5,5.4,5.4,5.4c3,0,5.4-2.5,5.4-5.4S82.7,26.8,79.7,26.8z"
+											></path>
+											<path
+												fill="currentColor"
+												d="M78.2,11H33.5C21,11,10.8,21.3,10.8,33.7v44.7c0,12.6,10.2,22.8,22.7,22.8h44.7c12.6,0,22.7-10.2,22.7-22.7
+	V33.7C100.8,21.1,90.6,11,78.2,11z M91,78.4c0,7.1-5.8,12.8-12.8,12.8H33.5c-7.1,0-12.8-5.8-12.8-12.8V33.7
+	c0-7.1,5.8-12.8,12.8-12.8h44.7c7.1,0,12.8,5.8,12.8,12.8V78.4z"
+											></path>
+										</svg>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="u-container-style u-layout-cell u-right-cell u-size-30 u-layout-cell-2">
+						<div class="u-container-layout u-container-layout-2">
+							<div class="u-expanded u-grey-10 u-map">
+								<div class="embed-responsive">
+									<iframe
+										class="embed-responsive-item"
+										src="//maps.google.com/maps?output=embed&amp;q=вулиця Макогона, 25, Івано-Франківськ, Івано-Франківська область, 76000&amp;t=m"
+										data-map="JTdCJTIyYWRkcmVzcyUyMiUzQSUyMk1hbmhhdHRhbiUyMiUyQyUyMnpvb20lMjIlM0FudWxsJTJDJTIydHlwZUlkJTIyJTNBJTIycm9hZCUyMiUyQyUyMmxhbmclMjIlM0FudWxsJTJDJTIyYXBpS2V5JTIyJTNBbnVsbCUyQyUyMm1hcmtlcnMlMjIlM0ElNUIlNUQlN0Q="
+									></iframe>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-9436">
+	<div class="u-align-left u-clearfix u-sheet u-sheet-1"></div>
+</footer>
