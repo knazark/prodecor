@@ -8,7 +8,7 @@
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
 		"deploy": "ng build --base-href \"https://knazark.github.io/prodecor/\" && yarn upload",
-		"upload": "npx angular-cli-ghpages — dir=dist/knazark.github.io/prodecor --cname=knazark.github.io/prodecor"
+		"upload": "npx angular-cli-ghpages — dir=dist/knazark.github.io --cname=knazark.github.io"
 	},
 	"private": true,
 	"dependencies": {
