@@ -7,7 +7,7 @@
 		"build": "ng build",
 		"watch": "ng build --watch --configuration development",
 		"test": "ng test",
-		"deploy": "ng build --prod --base-href \"https://prodecor.if.ua/\" && yarn upload",
+		"deploy": "ng build --base-href \"https://prodecor.if.ua/\" && yarn upload",
 		"upload": "npx angular-cli-ghpages — dir=dist/prodecor.if.ua --cname=prodecor.if.ua"
 	},
 	"private": true,
